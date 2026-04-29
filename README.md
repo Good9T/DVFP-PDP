@@ -36,3 +36,15 @@ python train.py
 ```bash
 python test.py
 ```
+### 4. Cross-Scale Generalization Experiments
+Additional generalization experiments can be conducted by modifying key hyperparameters in `env_params`.
+The model pre-trained on medium-scale instances (e.g., 50-node) can be directly evaluated on larger unseen problem scales to verify cross-scale transfer ability.
+
+### 5. Configuration for 150-Node Unseen Instances
+In our experiments, different problem scales adopt distinct capacity values:
+- PDTSP20: capacity = 20
+- PDTSP50: capacity = 30
+- PDTSP100: capacity = 40
+
+For the unseen 150-node test set (without independent training), 
+we further increase the capacity to **50** for a more challenging and comprehensive generalization evaluation in our paper.
