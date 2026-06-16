@@ -61,10 +61,8 @@ class MixedScoreAttention(nn.Module):
         dot_product = torch.matmul(q, k.transpose(2, 3))
         dot_product_score = dot_product.unsqueeze(-1) / sqrt_qkv_dim
 
-        # 关键：problem 是 (B,N,N,2)，直接展开成 2 个特征
         problem_score = problem[:, None, :, :, :].expand(batch_size, head_num, row_size, col_size, 2)
 
-        # 拼接：1 + 2 = 3 个特征，完美匹配 mix1_weight(3, ...)
         cat_score = torch.cat((dot_product_score, problem_score), dim=4)
 
         transposed_score = cat_score.transpose(1, 2)
