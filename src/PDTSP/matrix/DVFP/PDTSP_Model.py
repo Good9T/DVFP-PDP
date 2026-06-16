@@ -77,16 +77,12 @@ class PDTSPModel(nn.Module):
                     if (prob != 0).all():
                         break
             else:
-                # 测试取最优
                 selected = all_probs.argmax(dim=2)
                 prob = None
 
         return selected, prob
 
 
-# --------------------------------------------------------------------------------------
-# Encoder 部分（完全兼容矩阵输入、双视角）
-# --------------------------------------------------------------------------------------
 class PDTSP_Encoder(nn.Module):
     def __init__(self, **model_params):
         super().__init__()
@@ -143,9 +139,6 @@ class EncodingBlock(nn.Module):
         return out
 
 
-# --------------------------------------------------------------------------------------
-# Decoder 部分（POMO + 掩码自动适配 PDTSP 约束）
-# --------------------------------------------------------------------------------------
 class PDTSP_Decoder(nn.Module):
     def __init__(self, **model_params):
         super().__init__()
